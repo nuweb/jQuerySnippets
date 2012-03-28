@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<title>Day 12: Custom Effect Methods</title>
+	<style>*{margin:0; padding:0;}</style>
+</head>
+<body>
+<h1>Click Me</h1>
+<div class="content">
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat.</p>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<script>
+(function(){
+// Please the variables at the top of the page
+var content = $('div.content').hide();
+jQuery.fn.flash = function(speed, easing, callback){
+	var $this = $(this);
+	// this in this case refers to h1, to ensure the animation has completed 
+	// and then execute code, pass a second argument
+	// All of the jQuery methods return a jQuery object, we should do that as well
+	return $this.slideDown(1000, function(){
+		$this.delay(2000).slideUp(500);
+	});
+}
+
+$('h1').on('click', function(){
+	//$(this).next('div.content').flash(); or
+	content.flash();
+});
+
+})();
+</script>
+</body>
+</html>

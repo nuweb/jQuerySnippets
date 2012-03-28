@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<title>Day 6: bind, live, delegate, on</title>
+	<link rel="stylesheet" href="day5.css">
+</head>
+<body>
+
+<div class="container">
+<h2>Click Me!</h2>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<script>
+
+// Day 6: bind, live, delegate, on
+(function(){
+	
+	// bind, delegate, live is obsolete as of jQuery 1.7
+	//$("div.container").delegate("h2", "click", function() {	
+  	//	$(this).clone().appendTo('div.container');
+	//});
+
+	//$('h2').on('click', function(){
+	//	$(this).clone().appendTo('body');
+	//});
+
+	// Similar to live, bind, delegate
+	$("div.container").on("click", "h2", function() {
+  		$(this).clone().appendTo('div.container');
+	});
+
+})();
+
+</script>
+</body>
+</html>
+
+
+
+
+
+

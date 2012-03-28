@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<title></title>
+	<style>
+	li{color: #000;}
+	.emphasis {color:green}
+	/* li {color: black;}  /* set red on all lis */
+	/* ul.emphasis > li {color: red;} /* set black on direct descendants */
+	</style>
+</head>
+<body>
+<div class="container">	
+<div class="container">
+<ul class="emphasis">
+	<li>first child</li>
+	<li>second child</li>
+	<li>third child</li>
+	<li>fourth child</li>
+	<li>fifth child</li>
+	<li>sixth child
+		<ul>
+			<li>hello from the nest.</li>
+		</ul
+	</li>
+</ul>
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<script>
+// If you need old browsers to support, use complex selectors in JS rather than CSS
+// Use CSS selectors to take advantage of browsers native CSS parser
+
+// Grab direct descendants/children - ul.emphasis > li
+$("ul.emphasis").children("li").css("color" ,"green");
+// Grab all descendants/children - ul.emphasis li
+$("ul.emphasis").find("li").css("color" ,"green");
+// Select first child
+$("ul.emphasis").children("li:first-child").addClass("emphasis");
+// Select second child
+$("ul.emphasis").children("li:nth-child(2)").addClass("emphasis");
+// Select third child
+$("ul.emphasis").children("li:nth-child(3)").css("color", "red");
+// Select sixth child
+$("ul.emphasis").find("li:nth-child(6)").css("color" ,"blue");
+// Set the text of second child
+$("ul.emphasis").children("li:nth-child(2)").text("chandu");
+// eq method for selecting items - 2 selects third item, 
+// next selects fourth item
+$("ul.emphasis").children("li").eq(2).next().text("veera");
+// prev method selects second item
+$("ul.emphasis").children("li").eq(2).prev().text("veera");
+// Remove class - parent refers to direct parent
+$("li").parent().removeClass("emphasis");
+// Return all parents with the class container
+$("li").parents(".container").removeClass("emphasis");
+// Return closest parent that has a class container
+$("li").closest(".container").removeClass("emphasis");
+</script>
+
+</body>
+</html>
+
+
+
+
+
+

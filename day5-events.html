@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<title></title>
+	<link rel="stylesheet" href="css/day5.css">
+</head>
+<body>
+	<dl>
+		<dt>What are your hours?</dt>
+		<dd>We are open 24/7</dd>
+		<dt>What are your hours?</dt>
+		<dd>We are open 24/7</dd>
+		<dt>What are your hours?</dt>
+		<dd>We are open 24/7</dd>
+		<dt>What are your hours?</dt>
+		<dd>We are open 24/7</dd>
+		<dt>What are your hours?</dt>
+		<dd>We are open 24/7</dd>
+	</dl>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<script>
+// Day 5: jQuery Events
+(function(){
+	$('dd').filter(':nth-child(n+4)').addClass('hide');
+	// instead of attaching several event listeners to children 'dt'
+	// like $('dt').on('mouseenter'..., dt being the target
+	// attach one event listener to parent 'dl'
+	$('dl').on('mouseenter', 'dt', function(){
+		$(this)
+			.next().slideDown(100)        // show
+			.siblings('dd').slideUp(100); // hide
+	});
+
+	$('dl').on('mouseout', function(){
+		$(this).children('dd').hide();
+	});
+})();
+</script>
+<!-- 
+dl - definition list
+dt - definition term
+dd - definition details
+-->
+</body>
+</html>
+
+
+
+
+
+

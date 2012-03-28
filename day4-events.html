@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<title></title>
+	<link rel="stylesheet" href="css/day.css">
+</head>
+<body>
+<button data-file="night">Night</button>
+<button data-file="day">Day</button>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<script>
+// Day 4: jQuery Events
+(function(){
+	// Jump into the DOM minimum number of times
+	// during user interaction
+	// cache the query into a variable
+	var link = $("link");
+	$("button").on("click", function(){
+		// var stylesheet = $(this).text().toLowerCase();
+		var $this = $(this),
+		    stylesheet = $this.data("file");
+
+		link.attr("href", "css/" + stylesheet + ".css");
+		
+		$this
+			.siblings("button") // go to siblings
+			.removeAttr("disabled") // done with the siblings
+			.end() // got back to the button clicked
+			.attr("disabled", "disabled");
+	});
+})();
+</script>
+
+</body>
+</html>
+
+
+
+
+
+

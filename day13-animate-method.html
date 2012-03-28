@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<title>day13: Full control with animate</title>
+	<style>
+		.box{width:400px; background: red; padding: 2em; position: relative}	
+	</style>
+</head>
+<body>
+<h1>Click Me</h1>
+<div class="box">
+<h2>Some content here</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat.</p>
+</div>
+<p><button>Increase</button></p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<script>
+(function(){
+	// Query dom only once
+	var box = $('div.box');
+		//fontSize = parseInt(box.css('font-size'), 10);
+	$('button').on('click', function(){
+		// when targeting classes, limit it to elements
+		// box.css('font-size', fontSize+=5);
+
+		// box.animate({             // box.css({
+		// 	'font-size': '+=5',   // += new addition to jQuery
+		// 	'width': '+=300'
+		// }, 500, 'swing', function(){
+		// 	// triggered as soon as the animation completes
+		// 	console.log('animation completed');
+		// });
+
+	
+	});
+})();
+</script>
+</body>
+</html>

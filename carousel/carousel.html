@@ -1,0 +1,78 @@
+<!DOCTYPE html>  
+<html lang="en-GB">  
+<head>  
+<title>jQuery slider</title>  
+
+<style>
+*{ margin: 0; padding: 0; border: 0 none; outline: 0; }
+#container{ width: 900px; margin-left: auto; margin-right: auto; padding: 50px 0 0 0; position: relative; }  
+#gallery, #thumbs {float:left}
+#gallery{ width: 800px; height: 300px; overflow: hidden;}  
+#gallery img{ position: absolute; }  
+#thumbs {width:100px; height:300px; overflow: hidden}
+
+#next{display: block; width: 47px; height: 43px; background: url(img/arrow.png); position: relative; top: 257px; left: 855px; }  
+#next:hover{ background: url(img/arrowmo.png); }  
+
+img{display: block;}
+</style>      
+
+</head>  
+<body>
+<div id="container">
+  <h1>jQuery Slider</h1>
+  <div id="gallery">
+    <img src="img/1.jpg">
+    <img src="img/2.jpg">
+    <img src="img/3.jpg">
+    <img src="img/4.jpg">
+    <img src="img/5.jpg">
+    <img src="img/6.jpg">
+  </div>
+  <div id="thumbs">
+    <img src="img/11.jpg">
+    <img src="img/22.jpg">
+    <img src="img/33.jpg">
+    <img src="img/44.jpg">
+    <img src="img/55.jpg">
+    <img src="img/66.jpg">
+  </div>
+  <a id="next" href="#"></a>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script>
+(function($){
+    var index = 0;  
+    var images = $("#gallery img");  
+    var thumbs = $("#thumbs img");  
+    var imgHeight = thumbs.attr("height");  
+    thumbs.slice(0,3).clone().appendTo("#thumbs");  
+    for (i=0; i<thumbs.length; i++)  
+    {  
+        $(thumbs[i]).addClass("thumb-"+i);  
+        $(images[i]).addClass("image-"+i);  
+    }  
+  
+    $("#next").click(sift);  
+    show(index);  
+    setInterval(sift, 8000);  
+  
+    function sift()  
+    {  
+        if (index<(thumbs.length-1)){index+=1 ; }  
+        else {index=0}  
+        show (index);  
+    }  
+  
+    function show(num)  
+    {  
+        images.fadeOut(400);  
+        $(".image-"+num).stop().fadeIn(400);  
+        var scrollPos = (num+1)*imgHeight;  
+        $("#thumbs").stop().animate({scrollTop: scrollPos}, 400);  
+    } 
+        
+})(jQuery);
+</script>
+</body>  
+</html> 

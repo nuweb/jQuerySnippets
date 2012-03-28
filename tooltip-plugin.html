@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+	<title>tooltip plugin</title>
+</head>
+<style>
+body {
+padding: 0 10em;
+}
+
+#tooltip {
+	background: url(../images/search.png) no-repeat 5px 50%;
+	border: 1px solid #BFBFBF;
+	float: left;
+	font-size: 12px;
+	max-width: 160px;
+	padding: 1em 1em 1em 3em;
+	position: absolute;
+}
+
+.rounded {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+</style>
+<body>
+	<p>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis <a class="tooltip" title="This is my first jquery tooltip plugin" href="#">nostrud</a> exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. <a class="tooltip" title="This is my second jquery tooltip plugin" href="#">Duis</a> aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script>
+	//	Usage: 
+	//  $("a.tooltip").tooltip({background:"#000", color:"#fff"});
+	(function($){
+		// $.fn is shortcut for the prototype
+		$.fn.tooltip = function(options){
+			var defaults = {
+				background: "#e3e3e3",
+				color: "black",
+				rounded: false
+			},
+			
+			// settings - merges both defaults and options obj and 
+			// options object takes precedence
+			settings = $.extend({}, defaults, options);
+			
+			// loop over each item in the set of anchors
+			// this refers to the anchor tag objects passed 
+			// (with a class tooltip)
+			this.each(function(){
+				var $this = $(this), // save ref to anchor tag
+					title = this.title; // save ref to title
+				if($this.is("a") && $this.attr("title") != ''){
+					// don't let browsers show the default tooltip
+					// don't let browsers show the default tooltip
+					this.title = "";
+					$this.hover(function(e){
+						// on mouse over
+						// create the tooltip element with settings obj
+						$("<div id='tooltip' />")
+							.appendTo("body")
+							.text(title)
+							.hide()
+							.css({
+								backgroundColor: settings.background,
+								color: settings.color,
+								top: e.pageY + 10,
+								left: e.pageX + 20
+							})
+							.fadeIn(350);
+						// set rounded corners for the tooltip
+						if(settings.rounded){
+							$("#tooltip").addClass("rounded");
+						}
+
+					}, function(){
+						// on mouse out remove the tooltip from dom 
+						$("#tooltip").remove();
+
+					});
+				}
+				// move the tooltip along with mouse movement
+				$this.mousemove(function(e){
+					$("#tooltip").css({
+						top: e.pageY + 10,
+						left: e.pageX + 20
+					});
+				});
+
+			});
+			// return the jQuery object to allow for chainability
+			return this;
+		}
+	})(jQuery);
+
+</script>
+
+<script>
+	// call the tooltip
+	$("a.tooltip").tooltip({background:"#000", color:"#fff"});
+</script>
+</body>
+</html>

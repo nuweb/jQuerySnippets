@@ -1,0 +1,28 @@
+dl{
+	
+}
+dd{
+	margin: 0;
+	padding: 1em 0;
+	text-align:center;
+}
+dt{
+	cursor: pointer;
+	font-weight:bold;
+	font-size:1.5em;
+	line-height:2em;
+	background-color:#eee;
+	border-bottom:1px solid #c5c5c5;
+	border-top:1px solid #fff;
+	text-align:center;
+}
+
+dt:nth-last-child(2){border-bottom:none}
+/* dt:last-child wouldn't work, since the last child is dd */
+
+.hide{display: none}
+
+body{
+	width:500px;
+	margin:auto;
+}

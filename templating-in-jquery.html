@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Basic jQuery Template</title>
+	<style>
+		ul { list-style:none; margin:0; padding:0; }
+		li { width:500px; height:100px; border:1px solid #494949; padding:10px; margin:10px; position:relative; }
+		li p { position:relative; margin:0; z-index:1; }
+		li span { position: absolute; font-size:700%; color:#ececec; right:0; } 
+	</style>
+</head>
+<body>
+
+	<ul></ul>
+	<script id="listTempl" type="x-jquery-tmpl">
+		<li>
+			<strong>Name: </strong> ${name} <br> 
+			<strong>Age:</strong> ${age} <br>
+			<strong>Languages: </strong>
+	        {{if languages.length}}
+	            ${$item.getLanguages(" - ")}
+	        {{else}}
+	        	Unknow
+    	    {{/if}}
+		</li>
+	</script>
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+
+<script>
+	var data = [
+		{name: "John", age: 3, languages: ["english"]},
+		{name: "Meera", age: 12, languages: ["english", "telugu", "hindi"]},
+		{name: "Shima", age: 23, languages: ["english", "telugu", "hindi"]},
+		{name: "Gork", age: 52, languages: []},
+		{name: "Isha", age: 35, languages: ["hindi", "urdu", "marati"]}
+	];
+
+	$("#listTempl").tmpl(data, {
+		getLanguages: function(seperator){
+			return this.data.languages.join(seperator);
+		}
+	}).appendTo("ul");
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<title>Day 7: Creating & Appending Content</title>
+	<link rel="stylesheet" href="css/day5.css">
+</head>
+<body>
+<article>
+	<h1>My h1 text</h1>
+	<p>Lorem ipsum dolor sit amet, tempor incididunt ut labore et dolore magna aliqua.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipistempor incididunt ut.</p>
+</article>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<script>
+// Day 7: Creating & Appending Content
+(function(){
+	// 1. Creating content - jQuery 1.4
+	$('article').append('Text appears as first node inside the article tag');
+	$('article').prepend('Text appears as last node inside the article tag');
+	// $('article').after('Text appears as first node inside the article tag');
+	// $('article').before('Text appears as last node inside the article tag');
+	// Place content at specific point
+	$('h1').after('Text appears after My Post h1');
+	$('p').first().before('Text appears before first para'); 
+
+	// 2. Creating elements - jQuery 1.4
+	$('<h2></h2>', {
+		text: 'h2 node appears as last node inside the article tag',
+		class: 'myClass',
+		id: 'myTag1'
+	}).appendTo('article');
+
+	$('<h2></h2>', {
+		text: 'h2 node appears as first node inside the article tag',
+		class: 'myClass',
+		id: 'myTag2'
+	}).prependTo('article');
+
+	// Grab h1 from article and insert as last child to article tag
+	$('h1').appendTo('article');
+
+	$('<h2></h2>', {
+		text: 'h2 node is inserted after h1 node',
+		class: 'myClass',
+		id: 'myTag2'
+	}).insertAfter('h1');
+	// 	}).insertBefore('p:nth-child(3)'); 
+	$('p').eq(0).after($('h1'));
+	$('p').eq(0).after(function(){
+		return $(this).prev();
+	})
+})();
+</script>
+</body>
+</html>

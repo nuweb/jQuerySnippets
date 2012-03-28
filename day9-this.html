@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>Day 9: this keyword</title>
+</head>
+<body>
+<a href="http://nettuts.com/"></a>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<script>
+// Day 9: this keyword
+// this refers to the window object
+console.log(this);
+
+function doSomething(){
+	// this refers to the function
+	console.log(this);	
+}
+
+//$('a').on('click', function(){
+	// this refers to the anchor object
+//});
+
+function doIt(e){
+	console.log(e);
+	console.log(this); // refers to the anchor object
+	e.preventDefault();
+}
+
+//$('a').on('click', doIt);
+
+var obj = {
+	doIt: function(e){
+		e.preventDefault();
+		console.log(this); // this refers to anchor object
+	}
+}
+
+//$('a').on('click', obj.doIt); // this refers to achor inside doIt
+
+$('a').on('click', function(e){
+	// this == anchor that was clicked
+	// obj.doIt(); // this refers to obj inside obj
+	// if you still want to refer to anchor inside the obj doIt method
+	obj.doIt.call(this);
+	e.preventDefault();
+});
+
+// if you want this refer to obj inside obj
+// $('a').on('click', $.proxy(obj.doIt, obj));
+
+</script>
+</body>
+</html>

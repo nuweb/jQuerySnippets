@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<title>day10: effect speeds</title>
+	<style>*{margin:0; padding:0}</style>
+</head>
+<body>
+<h6>My Blog Post</h6>
+<div id="content">
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat.</p>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<script>
+// Day 10: Effects, speeds
+(function(){
+	$('#content').hide();
+	// console.log($.fx.speeds);
+	// Define custom speed
+	$.fx.speeds.conde = 1000;
+	$('h6').on('click', function(){
+		// defaults to 400ms if you don't specify speed arg
+		$(this).next().slideDown('conde');
+	});
+})();
+</script>
+</body>
+</html>
+
+
+
+
+
+
